@@ -33,8 +33,9 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL_ID }}
-          SLACK_MESSAGE: "Fail report by abc"
-          SLACK_TITLE: "ABC report"
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_MESSAGE: "Failed trivy scan, see uploaded report"
+          SLACK_TITLE: 'Scan failed - abc'
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           
       # - name: Fail Report   # Corrected indentation here
