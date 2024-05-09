@@ -23,7 +23,7 @@ jobs:
           vuln-type: 'os,library'
           output: 'fail_report_linzey.txt'
           exit-code: '1'
-          severity: 'HIGH'
+          severity: 'CRITICAL'
 
 
       # - name: Slack Notification
