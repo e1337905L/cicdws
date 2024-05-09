@@ -22,4 +22,14 @@ jobs:
           output: "fail_report.txt"
           severity: 'HIGH'
 
-      
+      - name: Fail Report   # Corrected indentation here
+        if: failure()
+        uses: MeilCli/slack-upload-file@v4
+        with:
+          slack_token: ${{ secrets.SLACK_TOKEN }}
+          channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
+          content: 'file content'
+          file_type: 'text'
+          file_name: 'text.txt'
+          title: 'title of file'
+          initial_comment: 'post by abc'
