@@ -49,5 +49,5 @@ jobs:
           file_name: 'fail_report.txt'
           file_path: 'fail_report.txt'
           title: 'title of file'
-          initial_comment: 'post by abc'
+          initial_comment: 'post by zeyu'
 
