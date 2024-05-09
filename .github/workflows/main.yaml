@@ -32,22 +32,21 @@ jobs:
         if: failure()
         uses: rtCamp/action-slack-notify@v2
         env:
+          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL_ID }}
           SLACK_MESSAGE: "Fail report by abc"
           SLACK_TITLE: "ABC report"
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL_ID }}
-
-
-      - name: Fail Report   # Corrected indentation here
-        if: failure()
-        uses: MeilCli/slack-upload-file@v4
-        with:
-          slack_token: ${{ secrets.SLACK_TOKEN }}
-          channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
-          content: 'file content'
-          file_type: 'text'
-          file_name: 'fail_report.txt'
-          file_path: 'fail_report.txt'
-          title: 'title of file'
-          initial_comment: 'post by zeyu'
+          
+      # - name: Fail Report   # Corrected indentation here
+      #   if: failure()
+      #   uses: MeilCli/slack-upload-file@v4
+      #   with:
+      #     slack_token: ${{ secrets.SLACK_TOKEN }}
+      #     channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
+      #     content: 'file content'
+      #     file_type: 'text'
+      #     file_name: 'fail_report.txt'
+      #     file_path: 'fail_report.txt'
+      #     title: 'title of file'
+      #     initial_comment: 'post by zeyu'
 
