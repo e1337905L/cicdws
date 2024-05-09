@@ -10,7 +10,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-    
+        env:
+          SLACK_MESSAGE: "Fail report by abc"
+          SLACK_TITLE: "Fail report"
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
@@ -24,6 +28,13 @@ jobs:
           exit-code: '1'
           severity: 'HIGH'
 
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_MESSAGE: "Fail report by abc"
+          SLACK_TITLE: "ABC report"
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
       - name: Fail Report   # Corrected indentation here
         if: failure()
         uses: MeilCli/slack-upload-file@v4
@@ -36,3 +47,4 @@ jobs:
           file_path: 'fail_report.txt'
           title: 'title of file'
           initial_comment: 'post by abc'
+
