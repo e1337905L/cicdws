@@ -21,32 +21,32 @@ jobs:
           format: 'table'
           ignore-unfixed: true
           vuln-type: 'os,library'
-          output: 'fail_report.txt'
+          output: 'fail_report_linzey.txt'
           exit-code: '1'
           severity: 'HIGH'
 
 
-      - name: Slack Notification
-        if: failure()
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL_ID }}
-          SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: "Failed trivy scan, see uploaded report"
-          SLACK_TITLE: 'Scan failed - lzy'
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+      # - name: Slack Notification
+      #   if: failure()
+      #   uses: rtCamp/action-slack-notify@v2
+      #   env:
+      #     SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL_ID }}
+      #     SLACK_COLOR: ${{ job.status }}
+      #     SLACK_MESSAGE: "Failed trivy scan, see uploaded report"
+      #     SLACK_TITLE: 'Scan failed - lzy'
+      #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
 
-      - name: Fail Report
-        if: failure()
-        uses: MeilCli/slack-upload-file@v4
-        with:
-          slack_token: ${{ secrets.SLACK_TOKEN }}
-          channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
-          content: 'file content'
-          file_type: 'text'
-          file_name: 'fail_report.txt'
-          file_path: 'fail_report.txt'
-          title: 'title of file'
+      # - name: Fail Report
+      #   if: failure()
+      #   uses: MeilCli/slack-upload-file@v4
+      #   with:
+      #     slack_token: ${{ secrets.SLACK_TOKEN }}
+      #     channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
+      #     content: 'file content'
+      #     file_type: 'text'
+      #     file_name: 'fail_report_linzey.txt'
+      #     file_path: 'fail_report_linzey.txt'
+      #     title: 'title of file'
 
           #fail path finish
 
