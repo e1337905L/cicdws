@@ -35,7 +35,7 @@ jobs:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL_ID }}
           SLACK_MESSAGE: "Fail report by abc"
           SLACK_TITLE: "ABC report"
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           
       # - name: Fail Report   # Corrected indentation here
       #   if: failure()
