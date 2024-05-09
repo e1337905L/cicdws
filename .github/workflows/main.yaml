@@ -24,7 +24,7 @@ jobs:
           format: 'table'
           ignore-unfixed: true
           vuln-type: 'os,library'
-          output: 'fail_report_lzy.txt'
+          output: 'fail_report.txt'
           exit-code: '1'
           severity: 'HIGH'
 
@@ -46,8 +46,8 @@ jobs:
           channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
           content: 'file content'
           file_type: 'text'
-          file_name: 'fail_report_lzy.txt'
-          file_path: 'fail_report_lzy.txt'
+          file_name: 'fail_report.txt'
+          file_path: 'fail_report.txt'
           title: 'title of file'
       #     initial_comment: 'post by zeyu'
 
