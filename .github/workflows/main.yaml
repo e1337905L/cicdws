@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: failreport
-        if: "!startsWith(github.event.head_commit.message, '#NORUN')"
+        if: "startsWith(github.event.head_commit.message, '#NORUN')"
         run: exit 1
 
       - name: Checkout code
