@@ -19,7 +19,7 @@ jobs:
           exit-code: '1'
           ignore-unfixed: true
           vuln-type: 'os,library'
-          output: "fail_report.txt"
+          output: 'fail_report.txt'
           severity: 'HIGH'
 
       - name: Fail Report   # Corrected indentation here
@@ -30,7 +30,7 @@ jobs:
           channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
           content: 'file content'
           file_type: 'text'
-          file_name: "fail_report.txt"
-          file_path: "fail_report.txt"
+          file_name: 'fail_report.txt'
+          file_path: 'fail_report.txt'
           title: 'title of file'
           initial_comment: 'post by abc'
