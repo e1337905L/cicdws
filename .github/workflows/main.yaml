@@ -11,7 +11,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         env:
-          SLACK_MESSAGE: "Fail report by abc"
+          SLACK_MESSAGE: "Fail report by Linzey"
           SLACK_TITLE: "Fail report"
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
