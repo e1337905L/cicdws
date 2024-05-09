@@ -29,11 +29,14 @@ jobs:
           severity: 'HIGH'
 
       - name: Slack Notification
+        if: failure()
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_MESSAGE: "Fail report by abc"
           SLACK_TITLE: "ABC report"
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL_ID }}
+
 
       - name: Fail Report   # Corrected indentation here
         if: failure()
