@@ -8,6 +8,10 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
+      - name: failreport:
+        if: "!startsWith(github.event.head_commit.message, '#NORUN')"
+        run: exit 1
+        
       - name: Checkout code
         uses: actions/checkout@v2
       
@@ -123,7 +127,6 @@ jobs:
         env:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL_ID }}
           SLACK_COLOR: ${{ job.status }}
-          SLACK_TITLE: 'Scan success- lzy'
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_MESSAGE: | 
             *Image build and signed*
