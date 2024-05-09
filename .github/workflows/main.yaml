@@ -123,6 +123,7 @@ jobs:
         env:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL_ID }}
           SLACK_COLOR: ${{ job.status }}
+          SLACK_TITLE: 'Scan success- lzy'
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_MESSAGE: | 
             *Image build and signed*
@@ -131,6 +132,7 @@ jobs:
             *Email*:e1337905@u.nus.edu
             *Git*:https://github.com/e1337905L/cicdws.git
             *image*:https://hub.docker.com/repository/docker/linzey/cicdws/general
+
 
       # - name: Sign the images with GitHub OIDC Token
       #   env:
