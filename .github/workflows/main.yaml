@@ -33,18 +33,18 @@ jobs:
       #     file_path: 'fail_report.txt'
       #     title: 'title of file'
 
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
-          scan-type: 'fs'
-          scan-ref: '.'
-          format: 'table'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          output: 'fail_report.txt'
-          exit-code: '1'
-          severity: 'HIGH'
+      # - name: Run Trivy vulnerability scanner
+      #   uses: aquasecurity/trivy-action@master
+      #   with:
+      #     image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+      #     scan-type: 'fs'
+      #     scan-ref: '.'
+      #     format: 'table'
+      #     ignore-unfixed: true
+      #     vuln-type: 'os,library'
+      #     output: 'fail_report.txt'
+      #     exit-code: '1'
+      #     severity: 'HIGH'
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
