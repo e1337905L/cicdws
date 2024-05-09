@@ -11,7 +11,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       
-      # - name: Slack Notification
+
+       - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'table'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          output: 'fail_report.txt'
+          exit-code: '1'
+          severity: 'HIGH'
+
+
+      #  - name: Slack Notification
       #   if: failure()
       #   uses: rtCamp/action-slack-notify@v2
       #   env:
@@ -33,18 +48,9 @@ jobs:
       #     file_path: 'fail_report.txt'
       #     title: 'title of file'
 
-      # - name: Run Trivy vulnerability scanner
-      #   uses: aquasecurity/trivy-action@master
-      #   with:
-      #     image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
-      #     scan-type: 'fs'
-      #     scan-ref: '.'
-      #     format: 'table'
-      #     ignore-unfixed: true
-      #     vuln-type: 'os,library'
-      #     output: 'fail_report.txt'
-      #     exit-code: '1'
-      #     severity: 'HIGH'
+          #fail path finish
+
+       
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
@@ -109,6 +115,22 @@ jobs:
           COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
+
+
+      - name: Slack Notification
+        if: success()
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL_ID }}
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_MESSAGE: | 
+            *Image build and signed*
+            *Name*: Lin Zeyu
+            *Metriculation*: A0292089R
+            *Email*:e1337905@u.nus.edu
+            *Git*:https://github.com/e1337905L/cicdws.git
+            *image*:https://hub.docker.com/repository/docker/linzey/cicdws/general
 
       # - name: Sign the images with GitHub OIDC Token
       #   env:
